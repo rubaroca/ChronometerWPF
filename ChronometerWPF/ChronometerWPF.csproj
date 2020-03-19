@@ -64,6 +64,7 @@
       <SubType>Code</SubType>
     </Compile>
     <Compile Include="Commands\DelegateCommand.cs" />
+    <Compile Include="Converters\TimeSpanToString.cs" />
     <Compile Include="Models\Chronometer.cs" />
     <Compile Include="ViewModels\BaseViewModel.cs" />
     <Compile Include="ViewModels\ChronometerViewModel.cs" />
