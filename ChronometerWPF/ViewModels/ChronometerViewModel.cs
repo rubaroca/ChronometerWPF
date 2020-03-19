@@ -79,9 +79,9 @@ namespace ChronometerWPF.ViewModels
         }
 
         private void StopTimeCounter()
-        {
-            stopwatch.Restart();
+        {           
             stopwatch.Stop();
+            stopwatch.Reset();
             StopTimer.InvokeCanExecuteChanged();
         }
 
