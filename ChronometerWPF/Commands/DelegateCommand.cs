@@ -1,4 +1,5 @@
 ﻿using System;
+using System.ComponentModel;
 using System.Windows.Input;
 
 namespace ChronometerWPF.Commands
@@ -25,6 +26,11 @@ namespace ChronometerWPF.Commands
         #endregion
 
         #region Public methods
+
+        public void InvokeCanExecuteChanged()
+        {
+            CanExecuteChanged?.Invoke(this, new PropertyChangedEventArgs("CanExecuteChanged"));
+        }
 
         public bool CanExecute(object parameter)
         {

@@ -69,27 +69,27 @@ namespace ChronometerWPF.ViewModels
         private void StartTimeCounter()
         {
             stopwatch.Start();
-            StartTimer.CanExecute(null);
+            StartTimer.InvokeCanExecuteChanged();
         }
 
         private void PauseTimeCounter()
         {
             stopwatch.Stop();
-            PauseTimer.CanExecute(null);
+            PauseTimer.InvokeCanExecuteChanged();
         }
 
         private void StopTimeCounter()
         {
             stopwatch.Restart();
             stopwatch.Stop();
-            StopTimer.CanExecute(null);
+            StopTimer.InvokeCanExecuteChanged();
         }
 
         private void RaiseCanExecutes()
         {
-            StartTimer.CanExecute(null);
-            PauseTimer.CanExecute(null); 
-            StopTimer.CanExecute(null);
+            StartTimer.InvokeCanExecuteChanged();
+            PauseTimer.InvokeCanExecuteChanged(); 
+            StopTimer.InvokeCanExecuteChanged();
         }
 
         #endregion
