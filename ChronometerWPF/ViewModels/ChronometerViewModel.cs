@@ -12,13 +12,13 @@ namespace ChronometerWPF.ViewModels
 
         private readonly Stopwatch stopwatch;
 
-        private readonly DelegateCommand startTimer;
-        private readonly DelegateCommand pauseTimer;
-        private readonly DelegateCommand stopTimer;
-
         #endregion
 
         #region Properties
+
+        public DelegateCommand StartTimer { get; private set; }
+        public DelegateCommand PauseTimer { get; private set; }
+        public DelegateCommand StopTimer { get; private set; }
 
         public Chronometer Chronometer { get; set; }
     
@@ -50,18 +50,18 @@ namespace ChronometerWPF.ViewModels
             stopwatch = new Stopwatch();
 
             var interval = new TimeSpan(0, 0, 0, 1);
-            var dispatcherTimer = new DispatcherTimer(interval, DispatcherPriority.Background, UpdateTotalElapsedTime, Dispatcher.CurrentDispatcher);
+            var dispatcherTimer = new DispatcherTimer(interval, DispatcherPriority.Background, UpdateTime, Dispatcher.CurrentDispatcher);
 
-            startTimer = new DelegateCommand(x => StartTimeCounter(), x => !stopwatch.IsRunning);
-            pauseTimer = new DelegateCommand(x => PauseTimeCounter(), x => stopwatch.IsRunning);
-            stopTimer = new DelegateCommand(x => StopTimeCounter(), x => stopwatch.Elapsed.TotalSeconds > 0);
+            StartTimer = new DelegateCommand(x => StartTimeCounter(), x => !stopwatch.IsRunning);
+            PauseTimer = new DelegateCommand(x => PauseTimeCounter(), x => stopwatch.IsRunning);
+            StopTimer = new DelegateCommand(x => StopTimeCounter(), x => stopwatch.Elapsed.TotalSeconds > 0);
         }
 
         #endregion       
 
         #region Private methods
 
-        private void UpdateTotalElapsedTime(object sender, EventArgs e)
+        private void UpdateTime(object sender, EventArgs e)
         {
             Time = stopwatch.Elapsed;
         }
@@ -69,27 +69,27 @@ namespace ChronometerWPF.ViewModels
         private void StartTimeCounter()
         {
             stopwatch.Start();
-            startTimer.CanExecute(null);
+            StartTimer.CanExecute(null);
         }
 
         private void PauseTimeCounter()
         {
             stopwatch.Stop();
-            pauseTimer.CanExecute(null);
+            PauseTimer.CanExecute(null);
         }
 
         private void StopTimeCounter()
         {
             stopwatch.Restart();
             stopwatch.Stop();
-            stopTimer.CanExecute(null);
+            StopTimer.CanExecute(null);
         }
 
         private void RaiseCanExecutes()
         {
-            startTimer.CanExecute(null);
-            pauseTimer.CanExecute(null); 
-            stopTimer.CanExecute(null);
+            StartTimer.CanExecute(null);
+            PauseTimer.CanExecute(null); 
+            StopTimer.CanExecute(null);
         }
 
         #endregion
