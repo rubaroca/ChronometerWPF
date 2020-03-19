@@ -11,6 +11,7 @@ namespace ChronometerWPF.ViewModels
         #region Fields
 
         private readonly Stopwatch stopwatch;
+        private Chronometer Chronometer { get; set; }
 
         #endregion
 
@@ -19,9 +20,7 @@ namespace ChronometerWPF.ViewModels
         public DelegateCommand StartTimer { get; private set; }
         public DelegateCommand PauseTimer { get; private set; }
         public DelegateCommand StopTimer { get; private set; }
-
-        public Chronometer Chronometer { get; set; }
-    
+        
         public TimeSpan Time
         {
             get

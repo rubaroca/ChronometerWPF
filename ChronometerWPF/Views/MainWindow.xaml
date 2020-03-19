@@ -15,7 +15,7 @@
                 <EventTrigger RoutedEvent="Button.MouseEnter">
                     <BeginStoryboard>
                         <Storyboard>
-                            <DoubleAnimation Storyboard.TargetProperty="FontSize" To="18" Duration="0:0:0.30" />
+                            <DoubleAnimation Storyboard.TargetProperty="FontSize" To="16" Duration="0:0:0.30" />
                         </Storyboard>
                     </BeginStoryboard>
                 </EventTrigger>
