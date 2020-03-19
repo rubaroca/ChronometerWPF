@@ -11,10 +11,9 @@
             <ColumnDefinition Width="264*"/>
             <ColumnDefinition/>
         </Grid.ColumnDefinitions>
-        <TextBlock Grid.Row="0" Text="" VerticalAlignment="Center" HorizontalAlignment="Center" FontSize="50" Margin="287,36,241,121.2" Height="66" Width="0"/>
-        <Button x:Name="Play" Content="Play" HorizontalAlignment="Left" Margin="69,139,0,0" VerticalAlignment="Top" Width="90" Height="28"/>
-        <Button x:Name="Pause" Content="Pause" HorizontalAlignment="Left" Margin="221,139,0,0" VerticalAlignment="Top" Width="92" Height="28"/>
-        <Button x:Name="Stop" Content="Stop" HorizontalAlignment="Left" Margin="379,139,0,0" VerticalAlignment="Top" Width="94" Height="28"/>
-
+        <TextBlock Text="{Binding Time, Mode=OneWay, Converter={StaticResource TimeSpanToString}}" VerticalAlignment="Center" HorizontalAlignment="Center" FontSize="50"/>
+        <Button x:Name="Play" Content="Play" HorizontalAlignment="Left" Margin="69,139,0,0" VerticalAlignment="Top" Width="90" Height="28" Command="{Binding StartTimer, NotifyOnSourceUpdated=True, UpdateSourceTrigger=PropertyChanged}"/>
+        <Button x:Name="Pause" Content="Pause" HorizontalAlignment="Left" Margin="221,139,0,0" VerticalAlignment="Top" Width="92" Height="28" Command="{Binding PauseTimer, NotifyOnSourceUpdated=True, UpdateSourceTrigger=PropertyChanged}"/>
+        <Button x:Name="Stop" Content="Stop" HorizontalAlignment="Left" Margin="379,139,0,0" VerticalAlignment="Top" Width="94" Height="28" Command="{Binding StopTimer, NotifyOnSourceUpdated=True, UpdateSourceTrigger=PropertyChanged}"/>
     </Grid>
 </Window>
