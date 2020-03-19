@@ -6,7 +6,32 @@
         xmlns:local="clr-namespace:ChronometerWPF"
         mc:Ignorable="d"
         Title="Chronometer" Height="250" Width="397" ResizeMode="NoResize">
-    <Grid Margin="0,0,-0.4,0.2">
+    
+    <Window.Resources>
+
+        <Style x:Key="CustomStyle" BasedOn="{x:Null}" TargetType="{x:Type Button}">
+
+            <Style.Triggers>
+                <EventTrigger RoutedEvent="Button.MouseEnter">
+                    <BeginStoryboard>
+                        <Storyboard>
+                            <DoubleAnimation Storyboard.TargetProperty="FontSize" To="18" Duration="0:0:0.30" />
+                        </Storyboard>
+                    </BeginStoryboard>
+                </EventTrigger>
+
+                <EventTrigger RoutedEvent="Button.MouseLeave">
+                    <BeginStoryboard>
+                        <Storyboard>
+                            <DoubleAnimation Storyboard.TargetProperty="FontSize" To="12" Duration="0:0:0.25" />
+                        </Storyboard>
+                    </BeginStoryboard>
+                </EventTrigger>
+            </Style.Triggers>
+        </Style>
+    </Window.Resources>
+
+    <Grid Margin="0,0,-0.4,0.2" Background="#FF92CCCD">
         <Grid>
             <Grid.ColumnDefinitions>
                 <ColumnDefinition Width="100*" />
@@ -18,9 +43,21 @@
                 <RowDefinition Height="125*" />
             </Grid.RowDefinitions>
             <TextBlock x:Name="TimeCounter" Text="{Binding Time, Converter={StaticResource TimeSpanToString}, Mode=OneWay}" Grid.ColumnSpan="3" Grid.Row ="0" VerticalAlignment="Center" HorizontalAlignment="Center" FontSize="50" Height="66"/>
-            <Button x:Name="Play" Grid.Column="0" Content="Play" HorizontalAlignment="Center" VerticalAlignment="Center" Width="90" Height="28" Command="{Binding StartTimer, NotifyOnSourceUpdated=True, UpdateSourceTrigger=PropertyChanged}" Grid.Row="2"/>
-            <Button x:Name="Pause" Grid.Column="1" Content="Pause" HorizontalAlignment="Center" VerticalAlignment="Center" Width="90" Height="28" Command="{Binding PauseTimer, NotifyOnSourceUpdated=True, UpdateSourceTrigger=PropertyChanged}" Grid.Row="2"/>
-            <Button x:Name="Stop" Grid.Column="2" Content="Stop" HorizontalAlignment="Center"  VerticalAlignment="Center" Width="90" Height="28" Command="{Binding StopTimer, NotifyOnSourceUpdated=True, UpdateSourceTrigger=PropertyChanged}"  Grid.Row="2"/>
+            <Button x:Name="Play" Grid.Column="0" Content="Play" HorizontalAlignment="Center" VerticalAlignment="Center" Width="90" Height="28" Command="{Binding StartTimer, NotifyOnSourceUpdated=True, UpdateSourceTrigger=PropertyChanged}" Grid.Row="2" Style="{DynamicResource CustomStyle}">
+                <Button.Effect>
+                    <DropShadowEffect/>
+                </Button.Effect>
+            </Button>
+            <Button x:Name="Pause" Grid.Column="1" Content="Pause" HorizontalAlignment="Center" VerticalAlignment="Center" Width="90" Height="28" Command="{Binding PauseTimer, NotifyOnSourceUpdated=True, UpdateSourceTrigger=PropertyChanged}" Grid.Row="2" Style="{DynamicResource CustomStyle}">
+                <Button.Effect>
+                    <DropShadowEffect/>
+                </Button.Effect>
+            </Button>
+            <Button x:Name="Stop" Grid.Column="2" Content="Stop" HorizontalAlignment="Center"  VerticalAlignment="Center" Width="90" Height="28" Command="{Binding StopTimer, NotifyOnSourceUpdated=True, UpdateSourceTrigger=PropertyChanged}"  Grid.Row="2" Style="{DynamicResource CustomStyle}">
+                <Button.Effect>
+                    <DropShadowEffect/>
+                </Button.Effect>
+            </Button>
         </Grid>
     </Grid>
 </Window>
